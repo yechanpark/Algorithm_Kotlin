@@ -52,14 +52,24 @@ package codility.lessons.lesson2_arrays
  */
 
 fun cyclicRotation(A: IntArray, K: Int): IntArray {
+    // 배열 길이가 1 이하거나 회전하지 않는 경우 그대로 리턴
     if (A.size <= 1 || K == 0) return A
 
     var k = K
+
+    // 배열 길이보다 많은 횟수 회전하는 경우 그 차이만큼만 로테이션
     if (A.size < k) k %= A.size
 
+    // 나누어 떨어지지 않는 경우 K만큼 오른쪽으로 rotate
     for (i in 1..k) {
+        // 끝 위치 숫자 저장
         val temp = A[A.size - 1]
+
+        // 배열 길이 - 1만큼 돌면서 직전에 있는 값을 오른쪽으로 1 칸씩 옮김.
+        // 0번 인덱스를 1번으로 옮기는 경우 마지막.
         for (j in A.size - 1 downTo 1) A[j] = A[j - 1]
+
+        // 끝 위치 숫자를 처음 위치로 저장
         A[0] = temp
     }
 

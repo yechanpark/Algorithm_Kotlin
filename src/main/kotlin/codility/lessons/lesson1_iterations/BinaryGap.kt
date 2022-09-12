@@ -19,22 +19,34 @@ package codility.lessons.lesson1_iterations
  */
 
 fun binaryGap(n: Int): Int {
+    // Data Validation. 5 미만의 경우 무조건 길이가 0임
     if (n < 5 || n > Int.MAX_VALUE - 1) return 0
 
-    var biggestLength = 0
-    var currentLength = 0
+    var biggestLength = 0 // 최대 길이
+    var currentLength = 0 // 현재 길이
 
     /** Integer to Binary String **/
     val binaryString = Integer.toBinaryString(n)
 
+    // 바이너리 길이만큼 돌면서
     for (element in binaryString) {
+
+        // 1이 나오면 계산들어감
         if (element == '1') {
+
+            // 현재 값이 최대값 보다 크거나 같으면 최대값 갱신
             if (currentLength >= biggestLength) {
                 biggestLength = currentLength
             }
+
+            // 현재 값 초기화
             currentLength = 0
+
+            // 다음 순서로 넘어감
             continue
         }
+
+        // 0이 나온 경우 현재값 + 1
         currentLength++
     }
 

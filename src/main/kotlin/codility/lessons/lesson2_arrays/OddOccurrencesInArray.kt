@@ -40,5 +40,9 @@ package codility.lessons.lesson2_arrays
  * all but one of the values in A occur an even number of times.
  */
 fun oddOccurrencesInArray(A: IntArray): Int {
-    return A.groupBy { it }.filter { it.value.count() == 1 }.values.first().first()
+    return A
+        .groupBy { it } // 값 별로 그룹
+        .filter { it.value.count() == 1 } // 갯수가 하나 인 것만 필터링
+        .values.first() // 필터링 된 리스트 중 첫 번째
+        .first() // 리스트에서 첫 번째 요소
 }
